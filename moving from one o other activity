@@ -1,0 +1,190 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Watch the Log in Android Studio when you run the application"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.056" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_weight="50"
+        android:onClick="gotoActivity3"
+        android:text="go to Activity3"
+        app:layout_constraintTop_toBottomOf="@+id/text"
+        tools:layout_editor_absoluteX="15dp" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "Activity1";
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Toast.makeText(this, "onStart Activity1", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onStart Activity1");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Toast.makeText(this, "onRestart Activity1", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onRestart Activity1");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(this, "onResume Activity1", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onResume Activity1");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Toast.makeText(this, "onPause Activity1", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onPause Activity1");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Toast.makeText(this, "onStop Activity1", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onStop Activity1");
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(this, "onDestroy Activity2", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onDestroy Activity1");
+    }
+
+public void gotoActivity3(View view) {
+        Intent intent = new Intent(this, activity3.class);
+        startActivity(intent);
+
+        }
+
+        }
+
+----------------------------------------------------
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity2">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="163dp"
+        android:layout_marginTop="268dp"
+        android:text="Activity2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+package com.example.one;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
+public class Activity2 extends AppCompatActivity {
+
+    private static final String TAG = "Activity2";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_2);
+        Toast.makeText(this, "onCreate Activity2", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onCreate Activity2");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Toast.makeText(this, "onStart Activity2", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onStart Activity2");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Toast.makeText(this, "onRestart Activity2", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onRestart Activity2");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(this, "onResume Activity2", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onResume Activity2");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Toast.makeText(this, "onPause Activity2", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onPause Activity2");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Toast.makeText(this, "onStop Activity2", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onStop Activity2");
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(this, "onDestroy Activity2", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onDestroy Activity2");
+    }
+}
+
+
+  
