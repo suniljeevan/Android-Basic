@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/aview"
+        android:layout_width="275dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="91dp"
+        android:text="Student Help Desk"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/group"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/bview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="93dp"
+        android:text="Attendance"
+        app:layout_constraintEnd_toStartOf="@+id/dview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aview" />
+
+    <TextView
+        android:id="@+id/cview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="39dp"
+        android:text="OfficeMail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bview" />
+
+    <TextView
+        android:id="@+id/dview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="106dp"
+        android:text="Official Group"
+        app:layout_constraintEnd_toStartOf="@+id/group"
+        app:layout_constraintStart_toEndOf="@+id/bview"
+        app:layout_constraintTop_toBottomOf="@+id/cview" />
+
+    <RadioGroup
+        android:id="@+id/group"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="89dp"
+        app:layout_constraintBottom_toTopOf="@+id/clickable"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dview"
+        app:layout_constraintTop_toBottomOf="@+id/aview">
+
+        <RadioButton
+            android:id="@+id/rb1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="https://camu.in" />
+
+        <RadioButton
+            android:id="@+id/rb2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="https://office.com" />
+
+        <RadioButton
+            android:id="@+id/rb3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="https://web.whatsapp.com" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/clickable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="161dp"
+        android:text="Go"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group" />
+</androidx.constraintlayout.widget.ConstraintLayout>
