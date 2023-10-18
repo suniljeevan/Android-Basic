@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Exp7-FragmentExample2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="s1">My Fragment 1</string>
+    <string name="s2">My Fragment 2</string>
+</resources>
