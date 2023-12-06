@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="139dp"
+        android:layout_marginBottom="138dp"
+        android:text="__________________"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fetch" />
+
+    <Button
+        android:id="@+id/insert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="71dp"
+        android:text="insert"
+        app:layout_constraintBottom_toTopOf="@+id/delete"
+        app:layout_constraintEnd_toStartOf="@+id/update" />
+
+    <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="update"
+        app:layout_constraintBaseline_toBaselineOf="@+id/insert"
+        app:layout_constraintEnd_toEndOf="@+id/fetch"
+        app:layout_constraintStart_toStartOf="@+id/fetch" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="6dp"
+        android:text="delete"
+        app:layout_constraintBottom_toBottomOf="@+id/fetch"
+        app:layout_constraintEnd_toStartOf="@+id/fetch" />
+
+    <Button
+        android:id="@+id/fetch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="247dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="248dp"
+        android:text="fetch"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Name" />
+
+    <EditText
+        android:id="@+id/ID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="48dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Enter ID"
+        app:layout_constraintBottom_toTopOf="@+id/Name"
+        app:layout_constraintStart_toStartOf="@+id/Name" />
+
+    <EditText
+        android:id="@+id/Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="188dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Enter Name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+package com.example.databasedemo1;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class MyDataSource extends SQLiteOpenHelper {
+    public MyDataSource(Context context) {
+
+        super(context,"UniversityDB",null,1);
+    }
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("create table student(id int,name varchar(10))");
+    }
+    @Override
+    public void onUpgrade(SQLiteDatabase db,int ov,int nv) {}
+    public void insert(int sid, String sname) {
+        SQLiteDatabase db=this.getWritableDatabase();
+        //not recommended
+        db.execSQL("insert into student values("+sid+","+sname+")",
+                null);
+        //recommended
+
+        ContentValues values = new ContentValues();
+        values.put("id", sid);
+        values.put("name", sname);
+        db.insert("student",null,values);
+
+    }
+    public void update(int sid, String sname) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        //not recommended
+        db.execSQL("update student set name="+sname+"where id="+sid,
+                null);
+
+        //recommended
+        ContentValues values= new ContentValues();
+        values.put("name",sname);
+        db.update("student",values,"id="+sid,null);
+    }
+    public void delete(int sid){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from student where id="+sid);
+        //or
+        ContentValues values=new ContentValues();
+        db.delete("student","id="+sid,null);
+    }
+    public String readRecords() throws Exception {
+        String tdata=null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor= db.rawQuery("select * from student",null);
+        while(cursor.moveToNext()) {
+            int i= cursor.getInt(0);
+            String n=cursor.getString(1);
+            tdata=i+" "+n+"\n";
+        }
+        return tdata;
+    }
+
+
+
+
+
+}
