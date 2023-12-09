@@ -1,0 +1,49 @@
+public class MyForegroundService extends Service {
+@Nullable
+@Override
+public IBinder onBind(Intent intent) {
+return null;
+}
+//the onStartCommand() method is called everytime u start the service
+//we will create a thread inside it , to check the thread is starting everytime we start the service
+@Override
+public int onStartCommand(Intent intent, int startId) {
+    new Thread(
+    new Runnable() {
+      @Override
+      public void run() {
+        try {
+        while(true) {
+          Log.e("service", "service is running");
+          Thread.sleep(2000); 
+        }
+       }catch(Exception e){}
+).start();
+//startForeground() which uses notification  , which shows a notification is running even though the app is terminated. Notification
+can not be removed even though system is terminated
+//create Notification Channel
+final String CHANNELID="foreground Service ID";
+NotificationChannel channel = new NotificationChannel(
+CHANNELID,
+CHANNELID,
+NotificationManager.IMPORTANCE_LOW
+);
+getSystemService(NotificationManager.class).createNotificationChannel(channel);
+//create Notification object for Notification Channel
+Notification.Buider notification = new Notification.Builder(this, CHANNELID)
+.setContentText("Foreground service is running")
+.setContentTitle("Service enabled")
+.setSmallIcon(R.drawable.ic_android_black_24dp);
+startForeground(id/1001,notification.build());
+return super.onStartCommand(intent,flags,startId);
+}
+}//end class
+
+run application
+look at the terminal as log error
+
+you will get message at every 2 second , service is running
+it shows foreground service is running
+if u minimize the app, the above message u will get
+but if u terminate, u will still get the message. and Notification as Service enabled and Foreground service is running.
+it shows the foregroundservice is running when app is terminated
